@@ -1,1 +1,1 @@
-"# shop" 
+# Typescript shop application
