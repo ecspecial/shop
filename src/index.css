@@ -1,6 +1,12 @@
+@font-face {
+  font-family: "Sterling Display";
+  src: url("./assets/fonts/SterlingDisplay\ Roman.ttf");
+}
+
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  font-family: "Sterling Display";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from '../NavBar/NavBar';
 import HomePage from '../Pages/HomePage/HomePage';
 import ContactPage from '../Pages/ContactPage/ContactPage';
+import Footer from './Footer/Footer';
 
 const App: React.FC = () => {
   	return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
 					<Route path='/' element={<HomePage />} />
           			<Route path='/contact' element={<ContactPage />} />
         		</Routes>
+				<Footer/>
 			</div>
 		</BrowserRouter>
 	);

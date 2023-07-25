@@ -1,10 +1,9 @@
 .navbar {
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 24px;
+    font-weight: 400;
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 3px solid black;
     margin-bottom: 1rem;
 }
 
@@ -26,7 +25,6 @@
     align-items: center;
     height: 60px;
     width: 100%;
-    border: 2px solid red;
     background-color: #81d8d0;
 }
 
@@ -35,7 +33,6 @@
     justify-content: center;
     height: 25px;
     width: 80%;
-    border: 2px solid red;
     justify-self: center;
 }
 
@@ -48,16 +45,14 @@
 .right-side {
     display: flex;
     width: 10%;
-    margin-right: 1%;
-    border: 2px solid red;
+    margin-right: 5%;
 }
 
 .burger {
     display: inline-block;
     cursor: pointer;
-    border: 3px solid yellow;
     width: 10%;
-    margin-left: 1%;
+    margin-left: 5%;
 }
 
   .bar1, .bar2, .bar3 {
@@ -83,7 +78,7 @@
     align-items: center;
     padding: 10px 0;
     width: 100%;
-    border: 3px solid pink;
+    background-color: #81d8d010;
 } 
 
 .navbar-menu.isOpen {
@@ -98,13 +93,13 @@
     width: 100%;
     justify-content: space-around;
     color: #000;
-    border: 3px solid green;
 }
 
 .navbar-list.isOpen {
+    font-size: 28px;
     display: flex;
     flex-direction: column;
-    padding-left: 2rem;
+    padding-left: 3rem;
 }
 
 .navbar-link {

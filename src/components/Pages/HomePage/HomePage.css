@@ -1,10 +1,81 @@
 .home-container {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    border: 3px solid red;
 }
 
-.pic1 {
-    border-radius: 30px;
-    width: 300px;
+.home-header {
+    border: 3px solid blue;
+}
+
+.slider {
+    border: 5px solid green;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.dots {
+    border: 5px solid black;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.slide {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    display: none;
+    width: 100%;
+    transition: transform 2s ease-in-out;
+    transform: translateX(-100%);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+.slide.active {
+    display: flex;
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+    align-self: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+}
+  
+.dot.active {
+    background-color: #999999;
+}
+  
+.arrow {
+    position: absolute;
+    bottom: 50%;
+    font-size: 2em;
+    color: #999999;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+}
+  
+.arrow.left {
+    left: 10px;
+}
+  
+.arrow.right {
+    right: 10px;
 }
