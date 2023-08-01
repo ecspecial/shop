@@ -3,16 +3,22 @@ import { cardData } from './HeaderCard/cardSpec';
 import HeaderCard from './HeaderCard/HeaderCard';
 import Slider from './Slider/Slider';
 import './HomePage.css';
+import NewSlider from './Slider/newSlider';
 
 const HomeHeader: React.FC = () => {
 
     return (
         <div className='home-header'>
-            <Slider>
+            {/* <Slider>
                 {cardData.map((spec, index) => (
                     <HeaderCard key={index} spec={spec} />
                 ))}
-            </Slider>
+            </Slider> */}
+            <NewSlider>
+                {cardData.map((spec, index) => (
+                    <HeaderCard key={index} spec={spec} />
+                ))}
+            </NewSlider>
         </div>
     )
 }

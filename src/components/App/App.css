@@ -1,7 +1,12 @@
 .App {
   display: flex;
   flex-direction: column;
+}
+
+.MainContent {
   min-height: 100vh;
-  width: 100%;
-  overflow: auto;
+}
+
+.Footer {
+  margin-top: 20px;
 }
