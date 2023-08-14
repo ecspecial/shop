@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { CardSpec } from "../Header/cardSpec";
 import HeaderCard from '../Header/HeaderCard';
 import './Slider.css';
@@ -8,6 +8,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ cardData }) => {
+    
     const [activeIndex, setActiveIndex] = useState(0);
     const [startX, setStartX] = useState<number | null>(null);
     const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -15,6 +16,7 @@ const Slider: React.FC<SliderProps> = ({ cardData }) => {
     const [shouldAutoSlide, setShouldAutoSlide] = useState(true);
     const timeoutRef = useRef<number | null>(null);
     const [slideDirection, setSlideDirection] = useState(1);
+    const [slidesLoaded, setSlidesLoaded] = useState(false);
 
     const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
         setStartX(event.clientX);
@@ -40,7 +42,7 @@ const Slider: React.FC<SliderProps> = ({ cardData }) => {
         setTimeout(() => setShouldAutoSlide(true), 20000);
     };
 
-    const startSlideShow = () => {
+    const startSlideShow = useCallback(() => {
         timeoutRef.current = window.setInterval(() => {
             if (activeIndex === cardData.length - 1) {
                 setSlideDirection(-1);
@@ -58,14 +60,14 @@ const Slider: React.FC<SliderProps> = ({ cardData }) => {
                 return newIndex;
             });
         }, 10000);
-    };
+    }, [activeIndex, cardData.length, slideDirection]);
 
-    const stopSlideShow = () => {
+    const stopSlideShow = useCallback(() => {
         if (timeoutRef.current) {
             window.clearTimeout(timeoutRef.current);
             timeoutRef.current = null;
         }
-    };
+    }, []); 
 
     useEffect(() => {
         if(shouldAutoSlide) {
@@ -75,18 +77,20 @@ const Slider: React.FC<SliderProps> = ({ cardData }) => {
         }
 
         return () => stopSlideShow();
-    }, [activeIndex, shouldAutoSlide]);
+    }, [activeIndex, shouldAutoSlide, startSlideShow, stopSlideShow]);
 
     useEffect(() => {
-        if (sliderRef.current && activeSlideRef.current) {
-            const offsetPercentage = -activeIndex * 33.33;
-            const slidesContainer = sliderRef.current.querySelector('.slidesContainer') as HTMLElement;
-            slidesContainer.style.transform = `translateX(${offsetPercentage}%)`;
-            
-            const height = activeSlideRef.current.offsetHeight + 20;
-            sliderRef.current.style.height = `${height}px`;
+        if (slidesLoaded) { 
+            if (sliderRef.current && activeSlideRef.current) {
+                const offsetPercentage = -activeIndex * 33.33;
+                const slidesContainer = sliderRef.current.querySelector('.slidesContainer') as HTMLElement;
+                slidesContainer.style.transform = `translateX(${offsetPercentage}%)`;
+                
+                const height = activeSlideRef.current.offsetHeight + 20;
+                sliderRef.current.style.height = `${height}px`;
+            }
         }
-    }, [activeIndex]);
+    }, [activeIndex, slidesLoaded]);
 
     return (
         <div className="slider" ref={sliderRef} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
@@ -97,7 +101,9 @@ const Slider: React.FC<SliderProps> = ({ cardData }) => {
                         className={`slide ${index === activeIndex ? "active" : ""}`}
                         ref={index === activeIndex ? activeSlideRef : null}
                     >
-                        <HeaderCard spec={spec}/>
+                        <HeaderCard spec={spec} onLoaded={() => {
+                            if (!slidesLoaded) setSlidesLoaded(true);
+                        }}/>
                     </div>
                 ))}
             </div>

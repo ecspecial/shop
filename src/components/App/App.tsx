@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 import NavBar from '../NavBar/NavBar';
 import HomePage from '../Pages/HomePage/HomePage';
@@ -8,7 +8,7 @@ import Footer from './Footer/Footer';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <div className='App'>
         <div className='MainContent'>
           <NavBar />
@@ -19,7 +19,7 @@ const App: React.FC = () => {
         </div>
         <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
